@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/Snus_project.props" />
+</Project>
