@@ -23,8 +23,8 @@ public class AnalogOutput : Tag
     public AnalogOutput(int? id, string name, string ioAddress, string description, double initialValue, double lowLimit, double highLimit, string units) : base(id, name, ioAddress, description)
     {
         InitialValue = initialValue;
-        LowLimit = lowLimit;
-        HighLimit = highLimit;
-        Units = units;
+        LowLimit     = lowLimit;
+        HighLimit    = highLimit;
+        Units        = units;
     }
 }

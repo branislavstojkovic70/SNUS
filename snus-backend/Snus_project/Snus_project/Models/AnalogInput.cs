@@ -16,17 +16,15 @@ public class AnalogInput : Tag
 
     public AnalogInput(int? id, string name, string ioAddress, string description, double scanTime, bool isOn, double lowLimit, double highLimit, string units) : base(id, name, ioAddress, description)
     {
-        ScanTime = scanTime;
-        IsOn = isOn;
-        LowLimit = lowLimit;
+        ScanTime  = scanTime;
+        IsOn      = isOn;
+        LowLimit  = lowLimit;
         HighLimit = highLimit;
-        Units = units;
+        Units     = units;
     }
 
-    public AnalogInput(int? id, string name, string ioAddress, string description) : base(id, name, ioAddress, description)
-    {
-    }
-
+    public AnalogInput(int? id, string name, string ioAddress, string description) : base(id, name, ioAddress, description){}
+    
     public AnalogInput(double scanTime, bool isOn, double lowLimit, double highLimit, string units)
     {
         ScanTime       = scanTime;

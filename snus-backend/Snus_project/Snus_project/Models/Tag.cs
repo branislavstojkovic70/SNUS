@@ -8,15 +8,13 @@ public abstract class Tag
     public string Description { get; set; }
 
 
-    protected Tag()
-    {
-    }
+    protected Tag() {}
 
     protected Tag(int? id, string name, string ioAddress, string description)
     {
-        Id = id;
-        Name = name;
-        IOAddress = ioAddress;
+        Id          = id;
+        Name        = name;
+        IOAddress   = ioAddress;
         Description = description;
     }
 }

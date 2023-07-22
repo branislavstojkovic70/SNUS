@@ -11,8 +11,6 @@
       <Folder Include="Controller" />
       <Folder Include="Info" />
       <Folder Include="Migrations" />
-      <Folder Include="Repository\InterfaceRepository" />
-      <Folder Include="Service" />
     </ItemGroup>
 
 </Project>
