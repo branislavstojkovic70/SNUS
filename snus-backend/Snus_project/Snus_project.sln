@@ -1,6 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snus_project", "Snus_project\Snus_project.csproj", "{CAD560B6-C888-47BA-9DF8-6031FDB95555}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SNUS_PROJECT", "SNUS_PROJECT.csproj", "{D40F26ED-11E9-40A5-B319-FBCE3040AFE5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -8,9 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CAD560B6-C888-47BA-9DF8-6031FDB95555}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CAD560B6-C888-47BA-9DF8-6031FDB95555}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CAD560B6-C888-47BA-9DF8-6031FDB95555}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CAD560B6-C888-47BA-9DF8-6031FDB95555}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D40F26ED-11E9-40A5-B319-FBCE3040AFE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D40F26ED-11E9-40A5-B319-FBCE3040AFE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D40F26ED-11E9-40A5-B319-FBCE3040AFE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D40F26ED-11E9-40A5-B319-FBCE3040AFE5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {70C7A1AB-7E0D-460F-B2B5-BC5F400B03B3}
 	EndGlobalSection
 EndGlobal
