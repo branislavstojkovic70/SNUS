@@ -8,7 +8,7 @@ namespace SNUS_PROJECT.Models
 
         public int ThreshHold { get; set; }
         public string Message { get; set; }
-        public AnalogInput AnalogInput { get; set; }
+        public AnalogInput? AnalogInput { get; set; }
 
         public int? AnalogId { get; set; }
 
@@ -18,12 +18,14 @@ namespace SNUS_PROJECT.Models
 
         public string? MeasureUnit { get; set; }
         public bool IsDeleted { get; set; }
+
+
         public Alarm()
         {
 
         }
 
-        public Alarm(int threshHold, string message, AnalogInput analogInput, int? analogId, DateTime timeStamp, int priority, string type, string? measureUnit, bool isDeleted)
+        public Alarm(int threshHold, string message, AnalogInput? analogInput, int? analogId, DateTime timeStamp, int priority, string type, string? measureUnit, bool isDeleted)
         {
             ThreshHold = threshHold;
             Message = message;
@@ -40,12 +42,10 @@ namespace SNUS_PROJECT.Models
         {
             ThreshHold = alarmDto.ThreshHold;
             Message = alarmDto.Message;
-            AnalogInput = new AnalogInput();
             AnalogId = alarmDto.AnalogId;
             TimeStamp = DateTime.Now;
             Priority = alarmDto.Priority;
             Type = alarmDto.Type;
-            //MeasureUnit = alarmDto.U;
             IsDeleted = false;
         }
     }

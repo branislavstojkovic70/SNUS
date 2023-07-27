@@ -49,8 +49,41 @@ namespace SNUS_PROJECT.Repository
                 existingDigitalOutput.Description = digitalOutputDto.Description;
                 existingDigitalOutput.IOAddress = digitalOutputDto.IOAddress;
                 existingDigitalOutput.InitialValue = digitalOutputDto.InitialValue;
+                existingDigitalOutput.DateTime = digitalOutputDto.DateTime;
                 _dataContext.SaveChanges();
             }
+        }
+
+        public IEnumerable<DigitalOutput> GetLatestDigitalOutputsPerIOAddress()
+        {
+            var latestInputs = _dataContext.DigitalOutputs
+                .GroupBy(a => a.IOAddress)
+                .Select(g => g.OrderByDescending(a => a.DateTime).FirstOrDefault());
+
+            return latestInputs;
+        }
+
+        public ICollection<TagDto> GetDigitalOutputsById(string name, int sort)
+        {
+            List<TagDto> result = new List<TagDto>();
+            if (sort == 0)
+            {
+                List<DigitalOutput> ais = _dataContext.DigitalOutputs.Where(p => (p.Name ?? "").Equals(name, StringComparison.OrdinalIgnoreCase)).OrderBy(ai => ai.Value).ToList();
+                foreach (var ai in ais)
+                {
+                    result.Add(new TagDto(ai));
+                }
+            }
+            else
+            {
+                List<DigitalOutput> ais = _dataContext.DigitalOutputs.Where(p => (p.Name ?? "").Equals(name, StringComparison.OrdinalIgnoreCase)).OrderByDescending(ai => ai.Value).ToList();
+                foreach (var ai in ais)
+                {
+                    result.Add(new TagDto(ai));
+                }
+            }
+            return result;
+           
         }
     }
 }

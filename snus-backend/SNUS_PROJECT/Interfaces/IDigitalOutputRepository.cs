@@ -10,5 +10,8 @@ namespace SNUS_PROJECT.Interfaces
         void AddDigitalOutput(DigitalOutput digitalOutput);
         void UpdateDigitalOutput(DigitalOutputDto digitalOutputDto, int id);
         void DeleteDigitalOutput(int id);
+        IEnumerable<DigitalOutput> GetLatestDigitalOutputsPerIOAddress();
+        public ICollection<TagDto> GetDigitalOutputsById(string name, int sort);
+
     }
 }

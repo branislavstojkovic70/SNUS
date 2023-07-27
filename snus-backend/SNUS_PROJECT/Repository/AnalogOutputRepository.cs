@@ -52,8 +52,41 @@ namespace SNUS_PROJECT.Repository
                 existingAnalogOutput.LowLimit = analogOutputDto.LowLimit;
                 existingAnalogOutput.HighLimit = analogOutputDto.HighLimit;
                 existingAnalogOutput.Units = analogOutputDto.Units;
+                existingAnalogOutput.DateTime = analogOutputDto.DateTime;
                 _dataContext.SaveChanges();
             }
+        }
+
+        public IEnumerable<AnalogOutput> GetLatestAnalogOutputsPerIOAddress()
+        {
+            var latestInputs = _dataContext.AnalogOutputs
+                .GroupBy(a => a.IOAddress)
+                .Select(g => g.OrderByDescending(a => a.DateTime).FirstOrDefault());
+
+            return latestInputs;
+        }
+
+        public ICollection<TagDto> GetAnalogOutputsById(string name, int sort)
+        {
+            List<TagDto> result = new List<TagDto>();
+            if (sort == 0)
+            {
+                List<AnalogOutput> ais = _dataContext.AnalogOutputs.Where(p => (p.Name ?? "").Equals(name, StringComparison.OrdinalIgnoreCase)).OrderBy(ai => ai.Value).ToList();
+                foreach (var ai in ais)
+                {
+                    result.Add(new TagDto(ai));
+                }
+            }
+            else
+            {
+                List<AnalogOutput> ais = _dataContext.AnalogOutputs.Where(p => (p.Name ?? "").Equals(name, StringComparison.OrdinalIgnoreCase)).OrderByDescending(ai => ai.Value).ToList();
+                foreach (var ai in ais)
+                {
+                    result.Add(new TagDto(ai));
+                }
+            }
+            return result;
+            
         }
     }
 }

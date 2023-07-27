@@ -21,6 +21,7 @@ builder.Services.AddScoped<IAnalogInputRepository, AnalogInputRepository>();
 builder.Services.AddScoped<IAnalogOutputRepository, AnalogOutputRepository>();
 builder.Services.AddScoped<IDigitalOutputRepository, DigitalOutputRepository>();
 builder.Services.AddScoped<IDigitalInputRepository, DigitalInputRepository>();
+builder.Services.AddScoped<IReportRepository, ReportRepository>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

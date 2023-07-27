@@ -12,8 +12,10 @@ namespace SNUS_PROJECT.DTO
         public double LowLimit { get; set; }
         public double HighLimit { get; set; }
         public string Units { get; set; }
+        public DateTime DateTime { get; set; }
+        public double Value { get; set; }
 
-        public AnalogInputDto(string name, string description, string iOAddress, string driver, double scanTime, double lowLimit, double highLimit, string units)
+        public AnalogInputDto(string name, string description, string iOAddress, string driver, double scanTime, double lowLimit, double highLimit, string units, DateTime dateTime, double value)
         {
             Name = name;
             Description = description;
@@ -23,6 +25,8 @@ namespace SNUS_PROJECT.DTO
             LowLimit = lowLimit;
             HighLimit = highLimit;
             Units = units;
+            DateTime = dateTime;
+            Value = value;
         }
 
         public AnalogInputDto()

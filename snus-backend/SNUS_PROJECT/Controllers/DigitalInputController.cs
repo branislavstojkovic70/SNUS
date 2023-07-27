@@ -2,6 +2,7 @@
 using SNUS_PROJECT.DTO;
 using SNUS_PROJECT.Interfaces;
 using SNUS_PROJECT.Models;
+using SNUS_PROJECT.Repository;
 
 namespace SNUS_PROJECT.Controllers
 {
@@ -76,6 +77,34 @@ namespace SNUS_PROJECT.Controllers
             try
             {
                 _DigitalInputRepository.DeleteDigitalInput(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("turnOn/{id}")]
+        public IActionResult TurnOnAnalogInput(int id)
+        {
+            try
+            {
+                _DigitalInputRepository.TurnOnDI(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("turnOff/{id}")]
+        public IActionResult TurnOffAnalogInput(int id)
+        {
+            try
+            {
+                _DigitalInputRepository.TurnOffDI(id);
                 return Ok();
             }
             catch (Exception ex)

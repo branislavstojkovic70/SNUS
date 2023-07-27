@@ -62,6 +62,59 @@ namespace SNUS_PROJECT.Repository
                 existingDigitalInput.IOAddress = DigitalInputDto.IOAddress;
                 existingDigitalInput.Driver = DigitalInputDto.Driver;
                 existingDigitalInput.ScanTime = DigitalInputDto.ScanTime;
+                existingDigitalInput.DateTime = DigitalInputDto.DateTime;
+                _dataContext.SaveChanges();
+            }
+        }
+
+        public IEnumerable<DigitalInput> GetLatestDigitalInputsPerIOAddress()
+        {
+            var latestInputs = _dataContext.DigitalInputs
+                .GroupBy(a => a.IOAddress)
+                .Select(g => g.OrderByDescending(a => a.DateTime).FirstOrDefault());
+
+            return latestInputs;
+        }
+
+        public ICollection<TagDto> GetDigitalInputsById(string name, int sort)
+        {
+            List<TagDto> result = new List<TagDto>();
+            if (sort == 0)
+            {
+                List<DigitalInput> ais = _dataContext.DigitalInputs.Where(p => p.Name == name).OrderBy(ai => ai.Value).ToList();
+                foreach (var ai in ais)
+                {
+                    result.Add(new TagDto(ai));
+                }
+            }
+            else
+            {
+                List<DigitalInput> ais = _dataContext.DigitalInputs.Where(p => p.Name == name).OrderByDescending(ai => ai.Value).ToList();
+                foreach (var ai in ais)
+                {
+                    result.Add(new TagDto(ai));
+                }
+            }
+            return result;
+            
+        }
+
+        public void TurnOnDI(int id)
+        {
+            var existingDigitalInput = _dataContext.DigitalInputs.Where(p => p.Id == id).FirstOrDefault();
+            if (existingDigitalInput != null)
+            {
+                existingDigitalInput.IsActive = true;
+                _dataContext.SaveChanges();
+            }
+        }
+
+        public void TurnOffDI(int id)
+        {
+            var existingDigitalInput = _dataContext.DigitalInputs.Where(p => p.Id == id).FirstOrDefault();
+            if (existingDigitalInput != null)
+            {
+                existingDigitalInput.IsActive = false;
                 _dataContext.SaveChanges();
             }
         }

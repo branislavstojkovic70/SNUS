@@ -11,5 +11,10 @@ namespace SNUS_PROJECT.Interfaces
         void AddDigitalInput(DigitalInput digitalInput);
         void UpdateDigitalInput(DigitalInputDto digitalInputDto, int id);
         void DeleteDigitalInput(int id);
+        void TurnOnDI(int id);
+        void TurnOffDI(int id);
+        IEnumerable<DigitalInput> GetLatestDigitalInputsPerIOAddress();
+        public ICollection<TagDto> GetDigitalInputsById(string name, int sort);
+
     }
 }

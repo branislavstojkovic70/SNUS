@@ -9,10 +9,12 @@
         public double ScanTime { get; set; }
 
         public bool? IsActive { get; set; }
+        public DateTime DateTime { get; set; }
+        public double Value { get; set; }
 
         public DigitalInputDto() { }
 
-        public DigitalInputDto(string name, string description, string iOAddress, string driver, double scanTime, bool? isActive)
+        public DigitalInputDto(string name, string description, string iOAddress, string driver, double scanTime, bool? isActive, DateTime dateTime, double value)
         {
             Name = name;
             Description = description;
@@ -20,6 +22,8 @@
             Driver = driver;
             ScanTime = scanTime;
             IsActive = isActive;
+            DateTime = dateTime;
+            Value = value;
         }
     }
 }

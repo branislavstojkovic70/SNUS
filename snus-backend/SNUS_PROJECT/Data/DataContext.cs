@@ -26,7 +26,7 @@ namespace SNUS_PROJECT.Data
             modelBuilder.Entity<AnalogInput>()
             .HasMany(e => e.Alarms)
             .WithOne(e => e.AnalogInput)
-            .HasForeignKey(e => e.AnalogId);
+            .HasForeignKey(e => e.AnalogId).OnDelete(DeleteBehavior.Cascade);
 
             //modelBuilder.Entity<Alarm>().HasOne(ai => ai.analogInput).WithMany(a => a.Alarms);
 

@@ -13,8 +13,10 @@ namespace SNUS_PROJECT.Models
         public double ScanTime { get; set; }
 
         public bool? IsActive { get; set; }
+        public DateTime DateTime { get; set; }
+        public double Value { get; set; }
 
-        public DigitalInput(string? name, string? description, string? iOAddress, string? driver, double scanTime, bool? isActive)
+        public DigitalInput(string? name, string? description, string? iOAddress, string? driver, double scanTime, bool? isActive, DateTime dateTime, double value)
         {
             Name = name;
             Description = description;
@@ -22,6 +24,8 @@ namespace SNUS_PROJECT.Models
             Driver = driver;
             ScanTime = scanTime;
             IsActive = isActive;
+            DateTime = dateTime;
+            Value = value;
         }
 
         public DigitalInput()
@@ -36,6 +40,8 @@ namespace SNUS_PROJECT.Models
             Driver = digitalInputDto.Driver;
             ScanTime = digitalInputDto.ScanTime;
             IsActive = digitalInputDto.IsActive;
+            DateTime = digitalInputDto.DateTime;
+            Value = digitalInputDto.Value;
         }
     }
 }

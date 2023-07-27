@@ -27,6 +27,8 @@ namespace SNUS_PROJECT.Repository
         public void AddAlarm(Alarm alarm)
         {
             _dataContext.Alarms.Add(alarm);
+            AnalogInput ai = _dataContext.AnalogInputs.Where(p => p.Id == alarm.Id).FirstOrDefault();
+            ai.Alarms.Add(alarm);
             _dataContext.SaveChanges();
         }
 
@@ -67,5 +69,48 @@ namespace SNUS_PROJECT.Repository
                 _dataContext.SaveChanges();
             }
         }
+
+        public ICollection<AlarmActivation> GetAlarmsInTimePeriod(DateTime from, DateTime to, int sortType)
+
+        {
+            var als = new List<AlarmActivation>();
+            if (sortType == 1)
+            {
+                als = _dataContext.AlarmActivations.Where(alarm => alarm.Timestamp >= from && alarm.Timestamp <= to).OrderBy(alarm => alarm.Timestamp).ToList();
+            }
+            else if (sortType == 2)
+            {
+                als = _dataContext.AlarmActivations.Where(alarm => alarm.Timestamp >= from && alarm.Timestamp <= to).OrderBy(alarm => alarm.Alarm.Priority).ToList();
+            }
+            else if (sortType == 3)
+            {
+                als = _dataContext.AlarmActivations.Where(alarm => alarm.Timestamp >= from && alarm.Timestamp <= to).OrderByDescending(alarm => alarm.Timestamp).ToList();
+            }
+            else
+            {
+                als = _dataContext.AlarmActivations.Where(alarm => alarm.Timestamp >= from && alarm.Timestamp <= to).OrderByDescending(alarm => alarm.Alarm.Priority).ToList();
+            }
+            return als;
+        }
+
+        public ICollection<Alarm> GetAlarmsByPriority(int priority, int sortType)
+        {
+            var alarms = new List<Alarm>();
+            if (sortType == 1)
+            {
+                alarms = _dataContext.Alarms.Where(alarm => alarm.Priority == priority).OrderBy(alarm => alarm.TimeStamp).ToList();
+
+            }
+            else
+            {
+                alarms = _dataContext.Alarms.Where(alarm => alarm.Priority == priority).OrderByDescending(alarm => alarm.TimeStamp).ToList();
+            }
+            foreach (Alarm alarm in alarms)
+            {
+                alarm.AnalogInput =  _dataContext.AnalogInputs.Find(alarm.AnalogId);
+            }
+            return alarms;
+        }
+
     }
 }

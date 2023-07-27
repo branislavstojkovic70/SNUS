@@ -9,10 +9,12 @@
         public double LowLimit { get; set; }
         public double HighLimit { get; set; }
         public string Units { get; set; }
+        public DateTime DateTime { get; set; }
+        public double Value { get; set; }
 
         public AnalogOutputDto() { }
 
-        public AnalogOutputDto(string name, string description, string iOAddress, double initialValue, double lowLimit, double highLimit, string units)
+        public AnalogOutputDto(string name, string description, string iOAddress, double initialValue, double lowLimit, double highLimit, string units, DateTime dateTime, double value)
         {
             Name = name;
             Description = description;
@@ -21,6 +23,8 @@
             LowLimit = lowLimit;
             HighLimit = highLimit;
             Units = units;
+            DateTime = dateTime;  
+            Value = value;
         }
     }
 }

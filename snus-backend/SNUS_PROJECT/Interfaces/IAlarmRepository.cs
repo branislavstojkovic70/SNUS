@@ -11,5 +11,7 @@ namespace SNUS_PROJECT.Interfaces
         void AddAlarm(Alarm alarm);
         void UpdateAlarm(AlarmDto alarm, int id);
         void DeleteAlarm(int id);
+        ICollection<AlarmActivation> GetAlarmsInTimePeriod(DateTime from, DateTime to, int sortType);
+        ICollection<Alarm> GetAlarmsByPriority(int priority, int sortType);
     }
 }

@@ -4677,11 +4677,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ANJA\\Desktop\\SNUS_PROJECT\\SNUS_PROJECT.csproj",
+      "projectUniqueName": "C:\\Users\\ANJA\\Desktop\\SNUS_project\\SNUS_PROJECT.csproj",
       "projectName": "SNUS_PROJECT",
-      "projectPath": "C:\\Users\\ANJA\\Desktop\\SNUS_PROJECT\\SNUS_PROJECT.csproj",
+      "projectPath": "C:\\Users\\ANJA\\Desktop\\SNUS_project\\SNUS_PROJECT.csproj",
       "packagesPath": "C:\\Users\\ANJA\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ANJA\\Desktop\\SNUS_PROJECT\\obj\\",
+      "outputPath": "C:\\Users\\ANJA\\Desktop\\SNUS_project\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

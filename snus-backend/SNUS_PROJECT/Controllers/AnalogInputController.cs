@@ -87,6 +87,34 @@ namespace SNUS_PROJECT.Controllers
             }
         }
 
+        [HttpPut("turnOn/{id}")]
+        public IActionResult TurnOnAnalogInput(int id)
+        {
+            try
+            {
+                _analogInputRepository.TurnOnAI(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("turnOff/{id}")]
+        public IActionResult TurnOffAnalogInput(int id)
+        {
+            try
+            {
+                _analogInputRepository.TurnOffAI(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
 
     }
 }

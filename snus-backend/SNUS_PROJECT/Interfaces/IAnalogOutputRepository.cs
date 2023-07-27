@@ -10,5 +10,8 @@ namespace SNUS_PROJECT.Interfaces
         void AddAnalogOutput(AnalogOutput analogOutput);
         void UpdateAnalogOutput(AnalogOutputDto analogOutputDto, int id);
         void DeleteAnalogOutput(int id);
+        IEnumerable<AnalogOutput> GetLatestAnalogOutputsPerIOAddress();
+        public ICollection<TagDto> GetAnalogOutputsById(string name, int sort);
+
     }
 }

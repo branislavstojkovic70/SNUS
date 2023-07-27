@@ -11,5 +11,10 @@ namespace SNUS_PROJECT.Interfaces
         void AddAnalogInput(AnalogInput analogInput);
         void UpdateAnalogInput(AnalogInputDto analogInputDto, int id);
         void DeleteAnalogInput(int id);
+        IEnumerable<AnalogInput> GetLatestAnalogInputsPerIOAddress();
+        void TurnOnAI(int id);
+        void TurnOffAI(int id);
+
+        public ICollection<TagDto> GetAnalogInputsById(string name, int sort);
     }
 }

@@ -13,10 +13,13 @@ namespace SNUS_PROJECT.Models
         public double LowLimit { get; set; }
         public double HighLimit { get; set; }
         public string? Units { get; set; }
+        public double Value { get; set; }
+
+        public DateTime DateTime { get; set; }
 
         public AnalogOutput() { }
 
-        public AnalogOutput(string? name, string? description, string? iOAddress, double initialValue, double lowLimit, double highLimit, string? units)
+        public AnalogOutput(string? name, string? description, string? iOAddress, double initialValue, double lowLimit, double highLimit, string? units, DateTime dateTime, double value)
         {
             Name = name;
             Description = description;
@@ -25,6 +28,8 @@ namespace SNUS_PROJECT.Models
             LowLimit = lowLimit;
             HighLimit = highLimit;
             Units = units;
+            DateTime = dateTime;
+            Value = value;
         }
 
       
@@ -37,6 +42,8 @@ namespace SNUS_PROJECT.Models
             LowLimit = analogOutputDto.LowLimit;
             HighLimit = analogOutputDto.HighLimit;
             Units = analogOutputDto.Units;
+            DateTime = analogOutputDto.DateTime;
+            Value = analogOutputDto.Value;
         }
     }
 }
