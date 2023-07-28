@@ -87,3 +87,5 @@ C:\Users\ANJA\Desktop\SNUS_project\obj\Debug\net6.0\refint\SNUS_PROJECT.dll
 C:\Users\ANJA\Desktop\SNUS_project\obj\Debug\net6.0\SNUS_PROJECT.pdb
 C:\Users\ANJA\Desktop\SNUS_project\obj\Debug\net6.0\SNUS_PROJECT.genruntimeconfig.cache
 C:\Users\ANJA\Desktop\SNUS_project\obj\Debug\net6.0\ref\SNUS_PROJECT.dll
+C:\Users\ANJA\Desktop\SNUS_PROJECT\bin\Debug\net6.0\SNUS_DRIVER.dll
+C:\Users\ANJA\Desktop\SNUS_PROJECT\bin\Debug\net6.0\SNUS_DRIVER.pdb

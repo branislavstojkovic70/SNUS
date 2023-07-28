@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SNUS_PROJECT", "SNUS_PROJECT.csproj", "{D40F26ED-11E9-40A5-B319-FBCE3040AFE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SNUS_PROJECT", "SNUS_PROJECT.csproj", "{D40F26ED-11E9-40A5-B319-FBCE3040AFE5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SNUS_driver", "..\SNUS_driver\SNUS_driver.csproj", "{A0A92187-2FDD-4F4F-B861-ECAE3C8189F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{D40F26ED-11E9-40A5-B319-FBCE3040AFE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D40F26ED-11E9-40A5-B319-FBCE3040AFE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D40F26ED-11E9-40A5-B319-FBCE3040AFE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0A92187-2FDD-4F4F-B861-ECAE3C8189F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0A92187-2FDD-4F4F-B861-ECAE3C8189F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0A92187-2FDD-4F4F-B861-ECAE3C8189F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0A92187-2FDD-4F4F-B861-ECAE3C8189F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using SNUS_DRIVER;
 using SNUS_PROJECT;
 using SNUS_PROJECT.Data;
 using SNUS_PROJECT.Interfaces;
@@ -27,7 +28,11 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 if (args.Length == 1 && args[0].ToLower() == "seeddata")
+{
     SeedData(app);
+    await SendDataAsync();
+}
+    
 
 void SeedData(IHost app)
 {
@@ -37,8 +42,17 @@ void SeedData(IHost app)
     {
         var service = scope.ServiceProvider.GetService<Seed>();
         service.SeedDataContext();
+
     }
 }
+
+static async Task SendDataAsync()
+{
+    var dataSender = new DataSender();
+    //await dataSender.SendDataAsync();
+}
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

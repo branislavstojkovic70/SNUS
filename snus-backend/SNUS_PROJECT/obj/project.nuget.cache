@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ef2BKed1Vsi/6Jkymf9LxgZAjcpwLLMNsbDtI3wyXg8T0hWNpS4gz/sh8ZatwiVAjMQRxI5mujf59CLDQ73ieg==",
+  "dgSpecHash": "9vY1k5djfG4O+1GInZbmFOLmDeWrWEs1mPxO64uoew430hyfXMcq//GPzG+Pq/J+JzMG37fzsf/mZFp6kmnE4Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ANJA\\Desktop\\SNUS_project\\SNUS_PROJECT.csproj",
+  "projectFilePath": "C:\\Users\\ANJA\\Desktop\\SNUS_PROJECT\\SNUS_PROJECT.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ANJA\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\ANJA\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
@@ -67,7 +67,7 @@
     "C:\\Users\\ANJA\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\ANJA\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\ANJA\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
-    "C:\\Users\\ANJA\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
+    "C:\\Users\\ANJA\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\ANJA\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "C:\\Users\\ANJA\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
     "C:\\Users\\ANJA\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512",

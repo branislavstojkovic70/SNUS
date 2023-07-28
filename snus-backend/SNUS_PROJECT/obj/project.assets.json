@@ -1108,15 +1108,15 @@
           "lib/netstandard2.0/Mono.TextTemplating.dll": {}
         }
       },
-      "Newtonsoft.Json/11.0.2": {
+      "Newtonsoft.Json/13.0.3": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -1727,6 +1727,19 @@
             "assetType": "runtime",
             "rid": "win"
           }
+        }
+      },
+      "SNUS_DRIVER/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3"
+        },
+        "compile": {
+          "bin/placeholder/SNUS_DRIVER.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SNUS_DRIVER.dll": {}
         }
       }
     }
@@ -3034,14 +3047,15 @@
         "mono.texttemplating.nuspec"
       ]
     },
-    "Newtonsoft.Json/11.0.2": {
-      "sha512": "IvJe1pj7JHEsP8B8J8DwlMEx8UInrs/x+9oVY+oCD13jpLu4JbJU2WCIsMRn5C4yW9+DgkaO8uiVE5VHKjpmdQ==",
+    "Newtonsoft.Json/13.0.3": {
+      "sha512": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
       "type": "package",
-      "path": "newtonsoft.json/11.0.2",
+      "path": "newtonsoft.json/13.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.md",
+        "README.md",
         "lib/net20/Newtonsoft.Json.dll",
         "lib/net20/Newtonsoft.Json.xml",
         "lib/net35/Newtonsoft.Json.dll",
@@ -3050,18 +3064,17 @@
         "lib/net40/Newtonsoft.Json.xml",
         "lib/net45/Newtonsoft.Json.dll",
         "lib/net45/Newtonsoft.Json.xml",
+        "lib/net6.0/Newtonsoft.Json.dll",
+        "lib/net6.0/Newtonsoft.Json.xml",
         "lib/netstandard1.0/Newtonsoft.Json.dll",
         "lib/netstandard1.0/Newtonsoft.Json.xml",
         "lib/netstandard1.3/Newtonsoft.Json.dll",
         "lib/netstandard1.3/Newtonsoft.Json.xml",
         "lib/netstandard2.0/Newtonsoft.Json.dll",
         "lib/netstandard2.0/Newtonsoft.Json.xml",
-        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.dll",
-        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
-        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
-        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
-        "newtonsoft.json.11.0.2.nupkg.sha512",
-        "newtonsoft.json.nuspec"
+        "newtonsoft.json.13.0.3.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
       ]
     },
     "Swashbuckle.AspNetCore.Swagger/6.5.0": {
@@ -4655,6 +4668,11 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "SNUS_DRIVER/1.0.0": {
+      "type": "project",
+      "path": "../SNUS_DRIVER/SNUS_DRIVER.csproj",
+      "msbuildProject": "../SNUS_DRIVER/SNUS_DRIVER.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -4665,6 +4683,7 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.8",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.8",
       "Microsoft.OpenApi >= 1.6.5",
+      "SNUS_DRIVER >= 1.0.0",
       "Swashbuckle.AspNetCore.Swagger >= 6.5.0",
       "Swashbuckle.AspNetCore.SwaggerGen >= 6.5.0",
       "Swashbuckle.AspNetCore.SwaggerUI >= 6.5.0"
@@ -4677,11 +4696,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ANJA\\Desktop\\SNUS_project\\SNUS_PROJECT.csproj",
+      "projectUniqueName": "C:\\Users\\ANJA\\Desktop\\SNUS_PROJECT\\SNUS_PROJECT.csproj",
       "projectName": "SNUS_PROJECT",
-      "projectPath": "C:\\Users\\ANJA\\Desktop\\SNUS_project\\SNUS_PROJECT.csproj",
+      "projectPath": "C:\\Users\\ANJA\\Desktop\\SNUS_PROJECT\\SNUS_PROJECT.csproj",
       "packagesPath": "C:\\Users\\ANJA\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ANJA\\Desktop\\SNUS_project\\obj\\",
+      "outputPath": "C:\\Users\\ANJA\\Desktop\\SNUS_PROJECT\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -4703,7 +4722,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\ANJA\\Desktop\\SNUS_DRIVER\\SNUS_DRIVER.csproj": {
+              "projectPath": "C:\\Users\\ANJA\\Desktop\\SNUS_DRIVER\\SNUS_DRIVER.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

@@ -1,0 +1,12 @@
+C:\Users\ANJA\Desktop\SNUS_DRIVER\bin\Debug\net6.0\SNUS_DRIVER.deps.json
+C:\Users\ANJA\Desktop\SNUS_DRIVER\bin\Debug\net6.0\SNUS_DRIVER.dll
+C:\Users\ANJA\Desktop\SNUS_DRIVER\bin\Debug\net6.0\SNUS_DRIVER.pdb
+C:\Users\ANJA\Desktop\SNUS_DRIVER\obj\Debug\net6.0\SNUS_DRIVER.csproj.AssemblyReference.cache
+C:\Users\ANJA\Desktop\SNUS_DRIVER\obj\Debug\net6.0\SNUS_DRIVER.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ANJA\Desktop\SNUS_DRIVER\obj\Debug\net6.0\SNUS_DRIVER.AssemblyInfoInputs.cache
+C:\Users\ANJA\Desktop\SNUS_DRIVER\obj\Debug\net6.0\SNUS_DRIVER.AssemblyInfo.cs
+C:\Users\ANJA\Desktop\SNUS_DRIVER\obj\Debug\net6.0\SNUS_DRIVER.csproj.CoreCompileInputs.cache
+C:\Users\ANJA\Desktop\SNUS_DRIVER\obj\Debug\net6.0\SNUS_DRIVER.dll
+C:\Users\ANJA\Desktop\SNUS_DRIVER\obj\Debug\net6.0\refint\SNUS_DRIVER.dll
+C:\Users\ANJA\Desktop\SNUS_DRIVER\obj\Debug\net6.0\SNUS_DRIVER.pdb
+C:\Users\ANJA\Desktop\SNUS_DRIVER\obj\Debug\net6.0\ref\SNUS_DRIVER.dll
