@@ -6,6 +6,8 @@ using SNUS_PROJECT.Repository;
 
 namespace SNUS_PROJECT.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class DigitalInputController : Controller
     {
         private readonly IDigitalInputRepository _DigitalInputRepository;

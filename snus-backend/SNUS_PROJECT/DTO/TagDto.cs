@@ -12,14 +12,17 @@ namespace SNUS_PROJECT.DTO
 
         public DateTime DateTime { get; set; }
 
+        public string Type { get; set; }
+
         public TagDto() { }
 
-        public TagDto(string name, string description, double value, DateTime dateTime)
+        public TagDto(string name, string description, double value, DateTime dateTime, string type)
         {
             Name = name;    
             Description = description;
             Value = value;
             DateTime = dateTime;
+            Type = type;
         }
 
         public TagDto(AnalogInput analogInput)
@@ -28,6 +31,7 @@ namespace SNUS_PROJECT.DTO
             Description = analogInput.Description;
             DateTime = analogInput.DateTime;
             Value = analogInput.Value;
+            Type = "AI";
         }
         public TagDto(DigitalInput digitalInput)
         {
@@ -35,6 +39,7 @@ namespace SNUS_PROJECT.DTO
             Description = digitalInput.Description;
             DateTime = digitalInput.DateTime;
             Value = digitalInput.Value;
+            Type = "DI";
         }
 
         public TagDto(DigitalOutput digitalOutput)
@@ -43,6 +48,7 @@ namespace SNUS_PROJECT.DTO
             Description = digitalOutput.Description;
             DateTime = digitalOutput.DateTime;
             Value = digitalOutput.Value;
+            Type = "DO";
         }
         public TagDto(AnalogOutput analogOutput)
         {
@@ -50,6 +56,7 @@ namespace SNUS_PROJECT.DTO
             Description = analogOutput.Description;
             DateTime = analogOutput.DateTime;
             Value = analogOutput.Value;
+            Type = "AO";
         }
     }
 }

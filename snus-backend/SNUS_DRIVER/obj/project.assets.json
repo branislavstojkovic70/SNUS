@@ -61,11 +61,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ANJA\\Desktop\\SNUS_driver\\SNUS_driver.csproj",
+      "projectUniqueName": "C:\\Users\\ANJA\\Desktop\\SNUS\\snus-backend\\SNUS_driver\\SNUS_driver.csproj",
       "projectName": "SNUS_driver",
-      "projectPath": "C:\\Users\\ANJA\\Desktop\\SNUS_driver\\SNUS_driver.csproj",
+      "projectPath": "C:\\Users\\ANJA\\Desktop\\SNUS\\snus-backend\\SNUS_driver\\SNUS_driver.csproj",
       "packagesPath": "C:\\Users\\ANJA\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ANJA\\Desktop\\SNUS_driver\\obj\\",
+      "outputPath": "C:\\Users\\ANJA\\Desktop\\SNUS\\snus-backend\\SNUS_driver\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
