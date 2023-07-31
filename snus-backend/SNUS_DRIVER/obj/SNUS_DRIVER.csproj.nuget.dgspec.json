@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ANJA\\Desktop\\SNUS_DRIVER\\SNUS_DRIVER.csproj": {}
+    "C:\\Users\\ANJA\\Desktop\\SNUS\\snus-backend\\SNUS_DRIVER\\SNUS_DRIVER.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ANJA\\Desktop\\SNUS_DRIVER\\SNUS_DRIVER.csproj": {
+    "C:\\Users\\ANJA\\Desktop\\SNUS\\snus-backend\\SNUS_DRIVER\\SNUS_DRIVER.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ANJA\\Desktop\\SNUS_DRIVER\\SNUS_DRIVER.csproj",
+        "projectUniqueName": "C:\\Users\\ANJA\\Desktop\\SNUS\\snus-backend\\SNUS_DRIVER\\SNUS_DRIVER.csproj",
         "projectName": "SNUS_DRIVER",
-        "projectPath": "C:\\Users\\ANJA\\Desktop\\SNUS_DRIVER\\SNUS_DRIVER.csproj",
+        "projectPath": "C:\\Users\\ANJA\\Desktop\\SNUS\\snus-backend\\SNUS_DRIVER\\SNUS_DRIVER.csproj",
         "packagesPath": "C:\\Users\\ANJA\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ANJA\\Desktop\\SNUS_DRIVER\\obj\\",
+        "outputPath": "C:\\Users\\ANJA\\Desktop\\SNUS\\snus-backend\\SNUS_DRIVER\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

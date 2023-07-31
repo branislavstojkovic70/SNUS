@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ANJA\\Desktop\\SNUS_PROJECT\\SNUS_PROJECT.csproj": {}
+    "C:\\Users\\ANJA\\Desktop\\SNUS\\snus-backend\\SNUS_PROJECT\\SNUS_PROJECT.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ANJA\\Desktop\\SNUS_DRIVER\\SNUS_DRIVER.csproj": {
+    "C:\\Users\\ANJA\\Desktop\\SNUS\\snus-backend\\SNUS_DRIVER\\SNUS_DRIVER.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ANJA\\Desktop\\SNUS_DRIVER\\SNUS_DRIVER.csproj",
+        "projectUniqueName": "C:\\Users\\ANJA\\Desktop\\SNUS\\snus-backend\\SNUS_DRIVER\\SNUS_DRIVER.csproj",
         "projectName": "SNUS_DRIVER",
-        "projectPath": "C:\\Users\\ANJA\\Desktop\\SNUS_DRIVER\\SNUS_DRIVER.csproj",
+        "projectPath": "C:\\Users\\ANJA\\Desktop\\SNUS\\snus-backend\\SNUS_DRIVER\\SNUS_DRIVER.csproj",
         "packagesPath": "C:\\Users\\ANJA\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ANJA\\Desktop\\SNUS_DRIVER\\obj\\",
+        "outputPath": "C:\\Users\\ANJA\\Desktop\\SNUS\\snus-backend\\SNUS_DRIVER\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -70,14 +70,14 @@
         }
       }
     },
-    "C:\\Users\\ANJA\\Desktop\\SNUS_PROJECT\\SNUS_PROJECT.csproj": {
+    "C:\\Users\\ANJA\\Desktop\\SNUS\\snus-backend\\SNUS_PROJECT\\SNUS_PROJECT.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ANJA\\Desktop\\SNUS_PROJECT\\SNUS_PROJECT.csproj",
+        "projectUniqueName": "C:\\Users\\ANJA\\Desktop\\SNUS\\snus-backend\\SNUS_PROJECT\\SNUS_PROJECT.csproj",
         "projectName": "SNUS_PROJECT",
-        "projectPath": "C:\\Users\\ANJA\\Desktop\\SNUS_PROJECT\\SNUS_PROJECT.csproj",
+        "projectPath": "C:\\Users\\ANJA\\Desktop\\SNUS\\snus-backend\\SNUS_PROJECT\\SNUS_PROJECT.csproj",
         "packagesPath": "C:\\Users\\ANJA\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ANJA\\Desktop\\SNUS_PROJECT\\obj\\",
+        "outputPath": "C:\\Users\\ANJA\\Desktop\\SNUS\\snus-backend\\SNUS_PROJECT\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -100,8 +100,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\ANJA\\Desktop\\SNUS_DRIVER\\SNUS_DRIVER.csproj": {
-                "projectPath": "C:\\Users\\ANJA\\Desktop\\SNUS_DRIVER\\SNUS_DRIVER.csproj"
+              "C:\\Users\\ANJA\\Desktop\\SNUS\\snus-backend\\SNUS_DRIVER\\SNUS_DRIVER.csproj": {
+                "projectPath": "C:\\Users\\ANJA\\Desktop\\SNUS\\snus-backend\\SNUS_DRIVER\\SNUS_DRIVER.csproj"
               }
             }
           }
