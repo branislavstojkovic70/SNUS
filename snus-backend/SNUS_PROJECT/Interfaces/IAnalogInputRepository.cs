@@ -11,7 +11,7 @@ namespace SNUS_PROJECT.Interfaces
         bool? IsAnalogInputActive(int id);
         void AddAnalogInput(AnalogInput analogInput);
         void UpdateAnalogInput(AnalogInputDto analogInputDto, int id);
-        void ChangeValue(int id, int value);
+        AnalogInput? ChangeValue(int id, int value);
         void DeleteAnalogInput(int id);
         IEnumerable<AnalogInput> GetLatestAnalogInputsPerIOAddress();
         bool TurnOnOffAI(int id);
