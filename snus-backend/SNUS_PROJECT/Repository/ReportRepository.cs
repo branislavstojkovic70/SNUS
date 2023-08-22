@@ -82,7 +82,7 @@ namespace SNUS_PROJECT.Repository
             }
         }
 
-        public ICollection<TagDto> GetLatestValuesOfTags(int sort, DateTime from, DateTime to)
+        public List<TagDto> GetLatestValuesOfTags(int sort, DateTime from, DateTime to)
         {
             List<AnalogInput> analogInputs = this.GetLatestAnalogInputsPerIOAddress(sort, from, to).ToList();
             List<AnalogOutput> analogOutputs = this.GetLatestAnalogOutputsPerIOAddress(sort, from, to).ToList();
@@ -118,7 +118,7 @@ namespace SNUS_PROJECT.Repository
             }
         }
 
-        public ICollection<TagDto> GetLatestValuesOfAITags(int sort)
+        public IEnumerable<TagDto> GetLatestValuesOfAITags(int sort)
         {
             List<AnalogInput> analogInputs = _analogInputRepository.GetLatestAnalogInputsPerIOAddress().ToList();
             List<TagDto> tags = new List<TagDto>();
@@ -140,7 +140,7 @@ namespace SNUS_PROJECT.Repository
             }
         }
 
-        public ICollection<TagDto> GetLatestValuesOfDITags(int sort)
+        public IEnumerable<TagDto> GetLatestValuesOfDITags(int sort)
         {
             List<DigitalInput> DigitalInputs = _digitalInputRepository.GetLatestDigitalInputsPerIOAddress().ToList();
             List<TagDto> tags = new List<TagDto>();

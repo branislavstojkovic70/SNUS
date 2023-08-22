@@ -26,7 +26,8 @@ namespace SNUS_PROJECT.Data
             modelBuilder.Entity<AnalogInput>()
             .HasMany(e => e.Alarms)
             .WithOne(e => e.AnalogInput)
-            .HasForeignKey(e => e.AnalogId).OnDelete(DeleteBehavior.Cascade);
+            .HasForeignKey(e => e.AnalogId)
+            .OnDelete(DeleteBehavior.Cascade);
 
             //modelBuilder.Entity<Alarm>().HasOne(ai => ai.analogInput).WithMany(a => a.Alarms);
 
@@ -43,9 +44,13 @@ namespace SNUS_PROJECT.Data
             modelBuilder.Entity<AlarmActivation>()
                 .Property(a => a.Id)
                 .ValueGeneratedOnAdd();
+            modelBuilder.Entity<Alarm>()
+               .HasMany(a => a.Activations)
+               .WithOne(aa => aa.Alarm)
+               .HasForeignKey(aa => aa.AlarmId)
+               .OnDelete(DeleteBehavior.Cascade);
 
-
-
+            base.OnModelCreating(modelBuilder);
         }
 
 

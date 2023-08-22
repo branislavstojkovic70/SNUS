@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TbBqnlsoOD4G522Jlk3BV7obA7PHojdKAkc+/BqCF4xovoqgj5etv5tjqFTR7i49X/UBDKTWoLPOvmoqAeHePA==",
+  "dgSpecHash": "F9BF8ckwbIVjL1x3fs6wY4TuQikj/h39pnAROCUed2100tvcRacTKTvNnVfTMHBy903Lk9ipfGzjqEtUZQDOwg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ANJA\\Desktop\\SNUS\\snus-backend\\SNUS_PROJECT\\SNUS_PROJECT.csproj",
+  "projectFilePath": "C:\\Users\\ANJA\\Desktop\\SNUS\\snus-backend\\Snus_project\\SNUS_PROJECT.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ANJA\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\ANJA\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

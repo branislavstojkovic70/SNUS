@@ -9,8 +9,8 @@ namespace SNUS_PROJECT.Interfaces
         IEnumerable<DigitalOutput> GetLatestDigitalOutputsPerIOAddress(int sort, DateTime from, DateTime to);
         IEnumerable<AnalogOutput> GetLatestAnalogOutputsPerIOAddress(int sort, DateTime from, DateTime to);
         IEnumerable<AnalogInput> GetLatestAnalogInputsPerIOAddress(int sort, DateTime from, DateTime to);
-        ICollection<TagDto> GetLatestValuesOfTags(int sort, DateTime from, DateTime to);
-        ICollection<TagDto> GetLatestValuesOfAITags(int sort);
-        ICollection<TagDto> GetLatestValuesOfDITags(int sort);
+        List<TagDto> GetLatestValuesOfTags(int sort, DateTime from, DateTime to);
+        IEnumerable<TagDto> GetLatestValuesOfAITags(int sort);
+        IEnumerable<TagDto> GetLatestValuesOfDITags(int sort);
     }
 }

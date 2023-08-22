@@ -7,6 +7,7 @@ namespace SNUS_PROJECT.Interfaces
     {
         ICollection<AnalogOutput> GetAnalogOutputs();
         AnalogOutput GetAnalogOutput(int id);
+        AnalogOutput GetAnalogOutputByName(string name);
         void AddAnalogOutput(AnalogOutput analogOutput);
         void UpdateAnalogOutput(AnalogOutputDto analogOutputDto, int id);
         void DeleteAnalogOutput(int id);

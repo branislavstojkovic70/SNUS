@@ -7,6 +7,7 @@ namespace SNUS_PROJECT.Interfaces
     {
         ICollection<DigitalOutput> GetDigitalOutputs();
         DigitalOutput GetDigitalOutput(int id);
+        DigitalOutput GetDigitalOutputByName(string name);
         void AddDigitalOutput(DigitalOutput digitalOutput);
         void UpdateDigitalOutput(DigitalOutputDto digitalOutputDto, int id);
         void DeleteDigitalOutput(int id);

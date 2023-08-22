@@ -33,6 +33,10 @@ namespace SNUS_PROJECT.Repository
         {
             return _dataContext.DigitalInputs.First(u => u.Id == id);
         }
+        public DigitalInput GetDigitalInputByName(string name)
+        {
+            return _dataContext.DigitalInputs.First(u => u.Name == name);
+        }
 
         public ICollection<DigitalInput> GetDigitalInputs()
         {
@@ -69,7 +73,7 @@ namespace SNUS_PROJECT.Repository
 
         public IEnumerable<DigitalInput> GetLatestDigitalInputsPerIOAddress()
         {
-            var latestInputs = _dataContext.DigitalInputs
+            var latestInputs = _dataContext.DigitalInputs.Where(a=> a.IsActive==true)
                 .GroupBy(a => a.IOAddress)
                 .Select(g => g.OrderByDescending(a => a.DateTime).FirstOrDefault());
 
@@ -99,22 +103,22 @@ namespace SNUS_PROJECT.Repository
             
         }
 
-        public void TurnOnDI(int id)
+        public void TurnOnOffDI(int id)
         {
             var existingDigitalInput = _dataContext.DigitalInputs.Where(p => p.Id == id).FirstOrDefault();
             if (existingDigitalInput != null)
             {
-                existingDigitalInput.IsActive = true;
+                existingDigitalInput.IsActive = !existingDigitalInput.IsActive;
                 _dataContext.SaveChanges();
             }
         }
 
-        public void TurnOffDI(int id)
+        public void ChangeValue(int id, int value)
         {
-            var existingDigitalInput = _dataContext.DigitalInputs.Where(p => p.Id == id).FirstOrDefault();
-            if (existingDigitalInput != null)
+            var existingAnalogInput = _dataContext.DigitalInputs.Where(p => p.Id == id).FirstOrDefault();
+            if (existingAnalogInput != null)
             {
-                existingDigitalInput.IsActive = false;
+                existingAnalogInput.Value = value;
                 _dataContext.SaveChanges();
             }
         }

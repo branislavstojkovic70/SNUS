@@ -2,7 +2,6 @@
 using SNUS_PROJECT.DTO;
 using SNUS_PROJECT.Interfaces;
 using SNUS_PROJECT.Models;
-using SNUS_PROJECT.Repository;
 
 namespace SNUS_PROJECT.Controllers
 {
@@ -36,7 +35,7 @@ namespace SNUS_PROJECT.Controllers
             {
                 DigitalInput DigitalInput = new DigitalInput(DigitalInputDto);
                 _DigitalInputRepository.AddDigitalInput(DigitalInput);
-                return Ok();
+                return Ok(DigitalInput);
             }
             catch (Exception ex)
             {
@@ -50,6 +49,21 @@ namespace SNUS_PROJECT.Controllers
         public IActionResult GetDigitalInput(int id)
         {
             var DigitalInput = _DigitalInputRepository.GetDigitalInput(id);
+            if (DigitalInput.Equals(null))
+            {
+                return BadRequest("DigitalInput with this id does not exist!");
+            }
+            else
+            {
+                return Ok(DigitalInput);
+            }
+        }
+        [HttpGet("getByName/{name}")]
+        [ProducesResponseType(200, Type = typeof(DigitalInput))]
+        [ProducesResponseType(400)]
+        public IActionResult GetDigitalInputByName(string name)
+        {
+            var DigitalInput = _DigitalInputRepository.GetDigitalInputByName(name);
             if (DigitalInput.Equals(null))
             {
                 return BadRequest("DigitalInput with this id does not exist!");
@@ -87,12 +101,12 @@ namespace SNUS_PROJECT.Controllers
             }
         }
 
-        [HttpPut("turnOn/{id}")]
+        [HttpPut("turnOnOff/{id}")]
         public IActionResult TurnOnAnalogInput(int id)
         {
             try
             {
-                _DigitalInputRepository.TurnOnDI(id);
+                _DigitalInputRepository.TurnOnOffDI(id);
                 return Ok();
             }
             catch (Exception ex)
@@ -101,18 +115,5 @@ namespace SNUS_PROJECT.Controllers
             }
         }
 
-        [HttpPut("turnOff/{id}")]
-        public IActionResult TurnOffAnalogInput(int id)
-        {
-            try
-            {
-                _DigitalInputRepository.TurnOffDI(id);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
     }
 }

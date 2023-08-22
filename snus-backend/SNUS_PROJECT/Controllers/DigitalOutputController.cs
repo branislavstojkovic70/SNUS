@@ -35,7 +35,7 @@ namespace SNUS_PROJECT.Controllers
             {
                 DigitalOutput DigitalOutput = new DigitalOutput(DigitalOutputDto);
                 _DigitalOutputRepository.AddDigitalOutput(DigitalOutput);
-                return Ok();
+                return Ok(DigitalOutput);
             }
             catch (Exception ex)
             {
@@ -49,6 +49,21 @@ namespace SNUS_PROJECT.Controllers
         public IActionResult GetDigitalOutput(int id)
         {
             var DigitalOutput = _DigitalOutputRepository.GetDigitalOutput(id);
+            if (DigitalOutput.Equals(null))
+            {
+                return BadRequest("DigitalOutput with this id does not exist!");
+            }
+            else
+            {
+                return Ok(DigitalOutput);
+            }
+        }
+        [HttpGet("getByName/{name}")]
+        [ProducesResponseType(200, Type = typeof(DigitalOutput))]
+        [ProducesResponseType(400)]
+        public IActionResult GetDigitalOutputByName(string name)
+        {
+            var DigitalOutput = _DigitalOutputRepository.GetDigitalOutputByName(name);
             if (DigitalOutput.Equals(null))
             {
                 return BadRequest("DigitalOutput with this id does not exist!");

@@ -3,6 +3,7 @@ using SNUS_PROJECT.Data;
 using SNUS_PROJECT.DTO;
 using SNUS_PROJECT.Interfaces;
 using SNUS_PROJECT.Models;
+using System.Security.Claims;
 
 namespace SNUS_PROJECT.Repository
 {
@@ -16,7 +17,7 @@ namespace SNUS_PROJECT.Repository
 
         public ICollection<Alarm> GetAlarms()
         {
-            return _dataContext.Alarms.OrderBy(p => p.Id).ToList();
+            return _dataContext.Alarms.Where(a => a.IsDeleted == false).OrderBy(p => p.Id).ToList();
         }
 
         public Alarm GetAlarm(int id)
@@ -24,12 +25,14 @@ namespace SNUS_PROJECT.Repository
             return _dataContext.Alarms.First(u => u.Id == id);
         }
 
-        public void AddAlarm(Alarm alarm)
+        public Alarm AddAlarm(Alarm alarm)
         {
             _dataContext.Alarms.Add(alarm);
-            AnalogInput ai = _dataContext.AnalogInputs.Where(p => p.Id == alarm.Id).FirstOrDefault();
+            AnalogInput ai = _dataContext.AnalogInputs.Where(p => p.Id == alarm.AnalogId).FirstOrDefault();
             ai.Alarms.Add(alarm);
             _dataContext.SaveChanges();
+            Console.WriteLine(alarm.Id);
+            return alarm;
         }
 
 
@@ -65,12 +68,14 @@ namespace SNUS_PROJECT.Repository
 
             if (alarmToRemove != null)
             {
-                _dataContext.Alarms.Remove(alarmToRemove);
+                AnalogInput ai = _dataContext.AnalogInputs.Where(p => p.Id == alarmToRemove.AnalogId).FirstOrDefault();
+                ai.Alarms.Remove(alarmToRemove);
+                alarmToRemove.IsDeleted = true;
                 _dataContext.SaveChanges();
             }
         }
 
-        public ICollection<AlarmActivation> GetAlarmsInTimePeriod(DateTime from, DateTime to, int sortType)
+        public ICollection<Alarm> GetAlarmsInTimePeriod(DateTime from, DateTime to, int sortType)
 
         {
             var als = new List<AlarmActivation>();
@@ -90,7 +95,15 @@ namespace SNUS_PROJECT.Repository
             {
                 als = _dataContext.AlarmActivations.Where(alarm => alarm.Timestamp >= from && alarm.Timestamp <= to).OrderByDescending(alarm => alarm.Alarm.Priority).ToList();
             }
-            return als;
+            List<Alarm> alarms = new List<Alarm>();
+            foreach (AlarmActivation aa in als)
+            {
+                if (aa.AlarmId!=null)
+                {
+                    alarms.Add(_dataContext.Alarms.Find(aa.AlarmId));
+                }
+            }
+            return alarms;
         }
 
         public ICollection<Alarm> GetAlarmsByPriority(int priority, int sortType)

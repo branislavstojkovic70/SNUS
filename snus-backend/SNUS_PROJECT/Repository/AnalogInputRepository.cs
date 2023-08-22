@@ -2,6 +2,7 @@
 using SNUS_PROJECT.DTO;
 using SNUS_PROJECT.Interfaces;
 using SNUS_PROJECT.Models;
+using System.Text.Json;
 
 namespace SNUS_PROJECT.Repository
 {
@@ -33,6 +34,10 @@ namespace SNUS_PROJECT.Repository
         {
             return _dataContext.AnalogInputs.First(u => u.Id == id);
         }
+        public AnalogInput GetAnalogInputByName(string name)
+        {
+            return _dataContext.AnalogInputs.First(u => u.Name == name);
+        }
 
         public ICollection<AnalogInput> GetAnalogInputs()
         {
@@ -43,7 +48,7 @@ namespace SNUS_PROJECT.Repository
             List<TagDto> result = new List<TagDto>();
             if (sort == 0)
             {
-                List<AnalogInput> ais = _dataContext.AnalogInputs.Where(p => (p.Name ?? "").Equals(name, StringComparison.OrdinalIgnoreCase)).OrderBy(ai => ai.Value).ToList();
+                List<AnalogInput> ais = _dataContext.AnalogInputs.Where(p => p.Name == name).OrderBy(ai => ai.Value).ToList();
                 foreach (var ai in ais)
                 {
                     result.Add(new TagDto(ai));
@@ -51,13 +56,26 @@ namespace SNUS_PROJECT.Repository
             }
             else
             {
-                List<AnalogInput> ais = _dataContext.AnalogInputs.Where(p => (p.Name ?? "").Equals(name, StringComparison.OrdinalIgnoreCase)).OrderByDescending(ai => ai.Value).ToList();
+                List<AnalogInput> ais = _dataContext.AnalogInputs.Where(p => p.Name == name).OrderByDescending(ai => ai.Value).ToList();
                 foreach (var ai in ais)
                 {
                     result.Add(new TagDto(ai));
                 }
             }
             return result;
+        }
+        public List<AnalogInput> GetAnalogInputsByName(string name, int sort)
+        {
+            List<AnalogInput> ais = new List<AnalogInput>();
+            if (sort == 0)
+            {
+                 ais = _dataContext.AnalogInputs.Where(p => p.Name==name).OrderBy(ai => ai.Value).ToList();
+            }
+            else
+            {
+                ais = _dataContext.AnalogInputs.Where(p => p.Name == name).OrderByDescending(ai => ai.Value).ToList();
+            }
+            return ais;
         }
 
         public bool? IsAnalogInputActive(int id)
@@ -86,6 +104,7 @@ namespace SNUS_PROJECT.Repository
                 existingAnalogInput.LowLimit = analogInputDto.LowLimit;
                 existingAnalogInput.HighLimit = analogInputDto.HighLimit;
                 existingAnalogInput.Units = analogInputDto.Units;
+                existingAnalogInput.Value = analogInputDto.Value;
                 
                 _dataContext.SaveChanges();
             }
@@ -93,30 +112,73 @@ namespace SNUS_PROJECT.Repository
 
         public IEnumerable<AnalogInput> GetLatestAnalogInputsPerIOAddress()
         {
-            var latestInputs = _dataContext.AnalogInputs
+            var latestInputs = _dataContext.AnalogInputs.Where(a => a.IsActive == true)
                 .GroupBy(a => a.IOAddress)
                 .Select(g => g.OrderByDescending(a => a.DateTime).FirstOrDefault());
 
             return latestInputs;
         }
 
-        public void TurnOnAI(int id)
-        {
-            var existingAnalogInput = _dataContext.AnalogInputs.Where(p => p.Id == id).FirstOrDefault();
-            if (existingAnalogInput != null)
-            {              
-                existingAnalogInput.IsActive = true;
-                _dataContext.SaveChanges();
-            }
-        }
-
-        public void TurnOffAI(int id)
+        
+        public bool TurnOnOffAI(int id)
         {
             var existingAnalogInput = _dataContext.AnalogInputs.Where(p => p.Id == id).FirstOrDefault();
             if (existingAnalogInput != null)
             {
-                existingAnalogInput.IsActive = false;
+                existingAnalogInput.IsActive = !existingAnalogInput.IsActive;
                 _dataContext.SaveChanges();
+                return (bool)existingAnalogInput.IsActive;
+            }
+            return false;
+        }
+
+        public void ChangeValue(int id, int value)
+        {
+            var existingAnalogInput = _dataContext.AnalogInputs.Where(p => p.Id == id).FirstOrDefault();
+            if (existingAnalogInput != null)
+            {
+                existingAnalogInput.Value = value;
+                _dataContext.SaveChanges();
+                CheckAlarm(value, existingAnalogInput);
+            }
+        }
+
+        private void CheckAlarm(int value, AnalogInput analogInput)
+        {
+            Alarm alarm = new Alarm();
+            AlarmActivation activation = new AlarmActivation();
+            if (analogInput.HighLimit > value)
+            {
+                if(analogInput.Alarms.Count > 0)
+                {
+                    alarm = analogInput.Alarms.FirstOrDefault();
+                }
+                else
+                {
+                    Random r = new Random();
+                    alarm = new Alarm((int)analogInput.HighLimit, "High value!", analogInput, analogInput.Id, DateTime.Now, r.Next(1, 4), "High", analogInput.Units, false);
+                }
+            }
+            if (analogInput.LowLimit < value)
+            {
+                if (analogInput.Alarms.Count > 0)
+                {
+                    alarm = analogInput.Alarms.FirstOrDefault();
+                }
+                else
+                {
+                    Random r = new Random();
+                    alarm = new Alarm((int)analogInput.HighLimit, "Low value!", analogInput, analogInput.Id, DateTime.Now, r.Next(1, 4), "Low", analogInput.Units, false);
+                }
+            }
+            activation = new AlarmActivation(DateTime.Now, alarm, alarm.Id);
+            _dataContext.AlarmActivations.Add(activation);
+            _dataContext.SaveChanges();
+            string interpolatedString = $"Alarm id: {alarm.Id}, type: {alarm.Type}, priority: {alarm.Priority}, message: {alarm.Message}, time: {alarm.TimeStamp}, value: {value}.";
+            string filePath = "C:\\Users\\ANJA\\Desktop\\SNUS\\snus-backend\\SNUS_PROJECT\\Data\\alarmsLog.txt"; // Replace with the actual file path
+            using (StreamWriter writer = new StreamWriter(filePath, append: true))
+            {
+                writer.WriteLine(interpolatedString);
             }
         }
     }

@@ -35,7 +35,7 @@ namespace SNUS_PROJECT.Controllers
             {
                 AnalogOutput analogOutput = new AnalogOutput(analogOutputDto);
                 _analogOutputRepository.AddAnalogOutput(analogOutput);
-                return Ok();
+                return Ok(analogOutput);
             }
             catch (Exception ex)
             {
@@ -49,6 +49,22 @@ namespace SNUS_PROJECT.Controllers
         public IActionResult GetAnalogOutput(int id)
         {
             var AnalogOutput = _analogOutputRepository.GetAnalogOutput(id);
+            if (AnalogOutput.Equals(null))
+            {
+                return BadRequest("AnalogOutput with this id does not exist!");
+            }
+            else
+            {
+                return Ok(AnalogOutput);
+            }
+        }
+
+        [HttpGet("getByName/{name}")]
+        [ProducesResponseType(200, Type = typeof(AnalogOutput))]
+        [ProducesResponseType(400)]
+        public IActionResult GetAnalogOutputByName(string name)
+        {
+            var AnalogOutput = _analogOutputRepository.GetAnalogOutputByName(name);
             if (AnalogOutput.Equals(null))
             {
                 return BadRequest("AnalogOutput with this id does not exist!");
