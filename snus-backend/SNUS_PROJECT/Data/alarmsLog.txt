@@ -24,3 +24,4 @@ Alarm id: 4, type: High, priority: 2, message: High value!, time: 22.8.2023. 23:
 Alarm id: 5, type: Low, priority: 1, message: Low value!, time: 22.8.2023. 23:39:59, value: -99.
 Alarm id: 4, type: High, priority: 2, message: High value!, time: 22.8.2023. 23:38:59, value: 98.
 Alarm id: 4, type: High, priority: 2, message: High value!, time: 22.8.2023. 23:38:59, value: -99.
+Alarm id: 4, type: High, priority: 2, message: High value!, time: 22.8.2023. 23:38:59, value: 98.

@@ -1,0 +1,15 @@
+C:\Users\ANJA\Desktop\RTU\bin\Debug\net6.0\RTU.exe
+C:\Users\ANJA\Desktop\RTU\bin\Debug\net6.0\RTU.deps.json
+C:\Users\ANJA\Desktop\RTU\bin\Debug\net6.0\RTU.runtimeconfig.json
+C:\Users\ANJA\Desktop\RTU\bin\Debug\net6.0\RTU.dll
+C:\Users\ANJA\Desktop\RTU\bin\Debug\net6.0\RTU.pdb
+C:\Users\ANJA\Desktop\RTU\obj\Debug\net6.0\RTU.csproj.AssemblyReference.cache
+C:\Users\ANJA\Desktop\RTU\obj\Debug\net6.0\RTU.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ANJA\Desktop\RTU\obj\Debug\net6.0\RTU.AssemblyInfoInputs.cache
+C:\Users\ANJA\Desktop\RTU\obj\Debug\net6.0\RTU.AssemblyInfo.cs
+C:\Users\ANJA\Desktop\RTU\obj\Debug\net6.0\RTU.csproj.CoreCompileInputs.cache
+C:\Users\ANJA\Desktop\RTU\obj\Debug\net6.0\RTU.dll
+C:\Users\ANJA\Desktop\RTU\obj\Debug\net6.0\refint\RTU.dll
+C:\Users\ANJA\Desktop\RTU\obj\Debug\net6.0\RTU.pdb
+C:\Users\ANJA\Desktop\RTU\obj\Debug\net6.0\RTU.genruntimeconfig.cache
+C:\Users\ANJA\Desktop\RTU\obj\Debug\net6.0\ref\RTU.dll
