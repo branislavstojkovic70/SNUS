@@ -11,7 +11,7 @@ namespace SNUS_PROJECT.Interfaces
         bool? IsDigitalInputActive(int id);
         void AddDigitalInput(DigitalInput digitalInput);
         void UpdateDigitalInput(DigitalInputDto digitalInputDto, int id);
-        void ChangeValue(int id, int value);
+        DigitalInput ChangeValue(int id, int value);
         void DeleteDigitalInput(int id);
         void TurnOnOffDI(int id);
         IEnumerable<DigitalInput> GetLatestDigitalInputsPerIOAddress();

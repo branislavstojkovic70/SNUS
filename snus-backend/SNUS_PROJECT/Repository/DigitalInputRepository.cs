@@ -113,14 +113,16 @@ namespace SNUS_PROJECT.Repository
             }
         }
 
-        public void ChangeValue(int id, int value)
+        public DigitalInput? ChangeValue(int id, int value)
         {
             var existingAnalogInput = _dataContext.DigitalInputs.Where(p => p.Id == id).FirstOrDefault();
             if (existingAnalogInput != null)
             {
                 existingAnalogInput.Value = value;
                 _dataContext.SaveChanges();
+                return existingAnalogInput;
             }
+            return null;
         }
     }
 }

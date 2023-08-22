@@ -132,7 +132,7 @@ namespace SNUS_PROJECT.Repository
             return false;
         }
 
-        public void ChangeValue(int id, int value)
+        public AnalogInput? ChangeValue(int id, int value)
         {
             var existingAnalogInput = _dataContext.AnalogInputs.Where(p => p.Id == id).FirstOrDefault();
             if (existingAnalogInput != null)
@@ -140,6 +140,11 @@ namespace SNUS_PROJECT.Repository
                 existingAnalogInput.Value = value;
                 _dataContext.SaveChanges();
                 CheckAlarm(value, existingAnalogInput);
+                return existingAnalogInput;
+            }
+            else
+            {
+                return null;
             }
         }
 

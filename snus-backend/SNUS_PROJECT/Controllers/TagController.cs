@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using SNUS_PROJECT.DTO;
+using SNUS_PROJECT.Hubs;
 using SNUS_PROJECT.Interfaces;
+using SNUS_PROJECT.Models;
 
 namespace SNUS_PROJECT.Controllers
 {
@@ -10,26 +13,31 @@ namespace SNUS_PROJECT.Controllers
     {
         private readonly IAnalogInputRepository _analogInputRepository;
         private readonly IDigitalInputRepository _digitalInputRepository;
+        private readonly IHubContext<TagHub> _hubContext;
 
-        public TagController(IAnalogInputRepository analogInputRepository, IDigitalInputRepository digitalInputRepository)
+        public TagController(IAnalogInputRepository analogInputRepository, IDigitalInputRepository digitalInputRepository,
+            IHubContext<TagHub> hubContext)
         {
             _analogInputRepository = analogInputRepository;
             _digitalInputRepository = digitalInputRepository;
+            _hubContext = hubContext;
         }
 
         [HttpPost("changeValue/{id}/{value}/{type}")]
-        public IActionResult UpdateAnalogInput(int id, int value,int type)
+        public async Task<ActionResult<TagDto>> UpdateAnalogInput(int id, int value,int type)
         {
             try
             {
                 if(type == 1)
                 {
-                    _analogInputRepository.ChangeValue(id, value);
+                    AnalogInput ai = _analogInputRepository.ChangeValue(id, value);
+                    await _hubContext.Clients.All.SendAsync("ReceiveTag", new TagDto(ai));
                     return Ok();
                 }
                 else
                 {
-                    _digitalInputRepository.ChangeValue(id, value);
+                    DigitalInput di = _digitalInputRepository.ChangeValue(id, value);
+                    await _hubContext.Clients.All.SendAsync("ReceiveTag", new TagDto(di));
                     return Ok();
                 }
 

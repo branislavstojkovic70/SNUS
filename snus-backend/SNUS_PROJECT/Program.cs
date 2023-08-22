@@ -79,6 +79,7 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.MapHub<AlarmHub>("/hubs/alarmHub");
+app.MapHub<TagHub>("/hubs/tagHub");
 
 
 app.Run();
