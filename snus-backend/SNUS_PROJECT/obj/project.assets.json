@@ -4683,6 +4683,7 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.8",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.8",
       "Microsoft.OpenApi >= 1.6.5",
+      "Newtonsoft.Json >= 13.0.3",
       "SNUS_DRIVER >= 1.0.0",
       "Swashbuckle.AspNetCore.Swagger >= 6.5.0",
       "Swashbuckle.AspNetCore.SwaggerGen >= 6.5.0",
@@ -4696,11 +4697,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ANJA\\Desktop\\SNUS\\snus-backend\\SNUS_PROJECT\\SNUS_PROJECT.csproj",
+      "projectUniqueName": "C:\\Users\\ANJA\\Desktop\\SNUS\\snus-backend\\Snus_project\\SNUS_PROJECT.csproj",
       "projectName": "SNUS_PROJECT",
-      "projectPath": "C:\\Users\\ANJA\\Desktop\\SNUS\\snus-backend\\SNUS_PROJECT\\SNUS_PROJECT.csproj",
+      "projectPath": "C:\\Users\\ANJA\\Desktop\\SNUS\\snus-backend\\Snus_project\\SNUS_PROJECT.csproj",
       "packagesPath": "C:\\Users\\ANJA\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ANJA\\Desktop\\SNUS\\snus-backend\\SNUS_PROJECT\\obj\\",
+      "outputPath": "C:\\Users\\ANJA\\Desktop\\SNUS\\snus-backend\\Snus_project\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -4766,6 +4767,10 @@
           "Microsoft.OpenApi": {
             "target": "Package",
             "version": "[1.6.5, )"
+          },
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[13.0.3, )"
           },
           "Swashbuckle.AspNetCore.Swagger": {
             "target": "Package",

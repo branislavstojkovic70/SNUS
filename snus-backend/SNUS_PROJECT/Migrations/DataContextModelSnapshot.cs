@@ -72,6 +72,7 @@ namespace SNUS_PROJECT.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("AlarmId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Timestamp")
@@ -275,10 +276,17 @@ namespace SNUS_PROJECT.Migrations
             modelBuilder.Entity("SNUS_PROJECT.Models.AlarmActivation", b =>
                 {
                     b.HasOne("SNUS_PROJECT.Models.Alarm", "Alarm")
-                        .WithMany()
-                        .HasForeignKey("AlarmId");
+                        .WithMany("Activations")
+                        .HasForeignKey("AlarmId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Alarm");
+                });
+
+            modelBuilder.Entity("SNUS_PROJECT.Models.Alarm", b =>
+                {
+                    b.Navigation("Activations");
                 });
 
             modelBuilder.Entity("SNUS_PROJECT.Models.AnalogInput", b =>

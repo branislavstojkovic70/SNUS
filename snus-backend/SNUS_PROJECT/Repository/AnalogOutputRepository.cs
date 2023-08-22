@@ -33,6 +33,10 @@ namespace SNUS_PROJECT.Repository
         {
             return _dataContext.AnalogOutputs.First(u => u.Id == id);
         }
+        public AnalogOutput GetAnalogOutputByName(string name)
+        {
+            return _dataContext.AnalogOutputs.First(u => u.Name == name);
+        }
 
         public ICollection<AnalogOutput> GetAnalogOutputs()
         {
@@ -45,14 +49,8 @@ namespace SNUS_PROJECT.Repository
             var existingAnalogOutput = _dataContext.AnalogOutputs.Where(p => p.Id == id).FirstOrDefault();
             if (existingAnalogOutput != null)
             {
-                existingAnalogOutput.Name = analogOutputDto.Name;
-                existingAnalogOutput.Description = analogOutputDto.Description;
-                existingAnalogOutput.IOAddress = analogOutputDto.IOAddress;
-                existingAnalogOutput.InitialValue = analogOutputDto.InitialValue;
-                existingAnalogOutput.LowLimit = analogOutputDto.LowLimit;
-                existingAnalogOutput.HighLimit = analogOutputDto.HighLimit;
-                existingAnalogOutput.Units = analogOutputDto.Units;
-                existingAnalogOutput.DateTime = analogOutputDto.DateTime;
+                _dataContext.Attach(existingAnalogOutput);
+                _dataContext.Entry(existingAnalogOutput).CurrentValues.SetValues(analogOutputDto);
                 _dataContext.SaveChanges();
             }
         }
@@ -71,7 +69,7 @@ namespace SNUS_PROJECT.Repository
             List<TagDto> result = new List<TagDto>();
             if (sort == 0)
             {
-                List<AnalogOutput> ais = _dataContext.AnalogOutputs.Where(p => (p.Name ?? "").Equals(name, StringComparison.OrdinalIgnoreCase)).OrderBy(ai => ai.Value).ToList();
+                List<AnalogOutput> ais = _dataContext.AnalogOutputs.Where(p => p.Name==name).OrderBy(ai => ai.Value).ToList();
                 foreach (var ai in ais)
                 {
                     result.Add(new TagDto(ai));
@@ -79,7 +77,7 @@ namespace SNUS_PROJECT.Repository
             }
             else
             {
-                List<AnalogOutput> ais = _dataContext.AnalogOutputs.Where(p => (p.Name ?? "").Equals(name, StringComparison.OrdinalIgnoreCase)).OrderByDescending(ai => ai.Value).ToList();
+                List<AnalogOutput> ais = _dataContext.AnalogOutputs.Where(p => p.Name == name).OrderByDescending(ai => ai.Value).ToList();
                 foreach (var ai in ais)
                 {
                     result.Add(new TagDto(ai));

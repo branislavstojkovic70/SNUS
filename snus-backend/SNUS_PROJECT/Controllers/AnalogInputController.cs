@@ -36,7 +36,7 @@ namespace SNUS_PROJECT.Controllers
             {
                 AnalogInput analogInput = new AnalogInput(analogInputDto);
                 _analogInputRepository.AddAnalogInput(analogInput);
-                return Ok();
+                return Ok(analogInput);
             }
             catch (Exception ex)
             {
@@ -53,6 +53,37 @@ namespace SNUS_PROJECT.Controllers
             if (AnalogInput.Equals(null))
             {
                 return BadRequest("AnalogInput with this id does not exist!");
+            }
+            else
+            {
+                return Ok(AnalogInput);
+            }
+        }
+
+        [HttpGet("getByName/{name}")]
+        [ProducesResponseType(200, Type = typeof(AnalogInput))]
+        [ProducesResponseType(400)]
+        public IActionResult GetAnalogInputByName(string name)
+        {
+            var AnalogInput = _analogInputRepository.GetAnalogInputByName(name);
+            if (AnalogInput.Equals(null))
+            {
+                return BadRequest("AnalogInput with this name does not exist!");
+            }
+            else
+            {
+                return Ok(AnalogInput);
+            }
+        }
+        [HttpGet("getAllByName/{name}/{sort}")]
+        [ProducesResponseType(200, Type = typeof(AnalogInput))]
+        [ProducesResponseType(400)]
+        public IActionResult GetAnalogInputsByName(string name, int sort)
+        {
+            var AnalogInput = _analogInputRepository.GetAnalogInputsByName(name, sort);
+            if (AnalogInput.Equals(null))
+            {
+                return BadRequest("AnalogInput with this name does not exist!");
             }
             else
             {
@@ -87,27 +118,13 @@ namespace SNUS_PROJECT.Controllers
             }
         }
 
-        [HttpPut("turnOn/{id}")]
-        public IActionResult TurnOnAnalogInput(int id)
-        {
-            try
-            {
-                _analogInputRepository.TurnOnAI(id);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [HttpPut("turnOff/{id}")]
+        [HttpPut("turnOnOff/{id}")]
         public IActionResult TurnOffAnalogInput(int id)
         {
             try
             {
-                _analogInputRepository.TurnOffAI(id);
-                return Ok();
+                bool isActive = _analogInputRepository.TurnOnOffAI(id);
+                return Ok(isActive);
             }
             catch (Exception ex)
             {

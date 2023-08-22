@@ -1,4 +1,5 @@
 ﻿using SNUS_PROJECT.DTO;
+using System.Text.Json.Serialization;
 
 namespace SNUS_PROJECT.Models
 {
@@ -8,6 +9,7 @@ namespace SNUS_PROJECT.Models
 
         public int ThreshHold { get; set; }
         public string Message { get; set; }
+        [JsonIgnore]
         public AnalogInput? AnalogInput { get; set; }
 
         public int? AnalogId { get; set; }
@@ -19,7 +21,7 @@ namespace SNUS_PROJECT.Models
         public string? MeasureUnit { get; set; }
         public bool IsDeleted { get; set; }
 
-
+        public ICollection<AlarmActivation> Activations { get; set; }
         public Alarm()
         {
 

@@ -33,6 +33,10 @@ namespace SNUS_PROJECT.Repository
         {
             return _dataContext.DigitalOutputs.First(u => u.Id == id);
         }
+        public DigitalOutput GetDigitalOutputByName(string name)
+        {
+            return _dataContext.DigitalOutputs.First(u => u.Name == name);
+        }
 
         public ICollection<DigitalOutput> GetDigitalOutputs()
         {
@@ -45,11 +49,8 @@ namespace SNUS_PROJECT.Repository
             var existingDigitalOutput = _dataContext.DigitalOutputs.Where(p => p.Id == id).FirstOrDefault();
             if (existingDigitalOutput != null)
             {
-                existingDigitalOutput.Name = digitalOutputDto.Name;
-                existingDigitalOutput.Description = digitalOutputDto.Description;
-                existingDigitalOutput.IOAddress = digitalOutputDto.IOAddress;
-                existingDigitalOutput.InitialValue = digitalOutputDto.InitialValue;
-                existingDigitalOutput.DateTime = digitalOutputDto.DateTime;
+                _dataContext.Attach(existingDigitalOutput);
+                _dataContext.Entry(existingDigitalOutput).CurrentValues.SetValues(digitalOutputDto);
                 _dataContext.SaveChanges();
             }
         }
@@ -68,7 +69,7 @@ namespace SNUS_PROJECT.Repository
             List<TagDto> result = new List<TagDto>();
             if (sort == 0)
             {
-                List<DigitalOutput> ais = _dataContext.DigitalOutputs.Where(p => (p.Name ?? "").Equals(name, StringComparison.OrdinalIgnoreCase)).OrderBy(ai => ai.Value).ToList();
+                List<DigitalOutput> ais = _dataContext.DigitalOutputs.Where(p => p.Name == name).OrderBy(ai => ai.Value).ToList();
                 foreach (var ai in ais)
                 {
                     result.Add(new TagDto(ai));
@@ -76,7 +77,7 @@ namespace SNUS_PROJECT.Repository
             }
             else
             {
-                List<DigitalOutput> ais = _dataContext.DigitalOutputs.Where(p => (p.Name ?? "").Equals(name, StringComparison.OrdinalIgnoreCase)).OrderByDescending(ai => ai.Value).ToList();
+                List<DigitalOutput> ais = _dataContext.DigitalOutputs.Where(p => p.Name == name).OrderByDescending(ai => ai.Value).ToList();
                 foreach (var ai in ais)
                 {
                     result.Add(new TagDto(ai));

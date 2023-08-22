@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using SNUS_PROJECT.DTO;
+using SNUS_PROJECT.Hubs;
 using SNUS_PROJECT.Interfaces;
 using SNUS_PROJECT.Models;
 
@@ -11,11 +13,27 @@ namespace SNUS_PROJECT.Controllers
     {
         private readonly IAlarmRepository _alarmRepository;
         private readonly IAnalogInputRepository _analogInputRepository;
+        private readonly IHubContext<AlarmHub> _hubContext;
 
-        public AlarmController(IAlarmRepository alarmRepository, IAnalogInputRepository analogInputRepository)
+        public AlarmController(IAlarmRepository alarmRepository, IAnalogInputRepository analogInputRepository, IHubContext<AlarmHub> hubContext)
         {
             _alarmRepository = alarmRepository;
             _analogInputRepository = analogInputRepository;
+            _hubContext = hubContext;
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<Alarm> GetAlarmActivation(int id)
+        {
+            // Retrieve the AlarmActivation object by its ID
+            var alarm = _alarmRepository.GetAlarm(id);
+
+            if (alarm == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(alarm);
         }
 
         [HttpGet("all")]
@@ -30,17 +48,34 @@ namespace SNUS_PROJECT.Controllers
             return Ok(alarms);
         }
 
+        [HttpGet("getByAnalogId/{id}")]
+        [ProducesResponseType(200, Type = typeof(List<Alarm>))]
+        [ProducesResponseType(400)]
+        public IActionResult GetAlarmsByAnalogId(int id)
+        {
+            var alarms = _alarmRepository.GetAlarms().Where(a => a.AnalogId == id);
+            if (alarms.Equals(null))
+            {
+                return BadRequest("AnalogInput with this id does not exist!");
+            }
+            else
+            {
+                return Ok(alarms);
+            }
+        }
+
         [HttpPost("new")]
-        public IActionResult AddAlarm([FromBody] AlarmDto alarm)
+        public async Task<ActionResult<Alarm>> AddAlarm([FromBody] AlarmDto alarm)
         {
             try
             {
                 Alarm alarm1 = new Alarm(alarm);
-                AnalogInput ai = _analogInputRepository.GetAnalogInput((int)alarm.AnalogId);
+                AnalogInput ai = _analogInputRepository.GetAnalogInput((int)alarm1.AnalogId);
                 alarm1.AnalogInput = ai;
                 alarm1.MeasureUnit = ai.Units;
                 _alarmRepository.AddAlarm(alarm1);
-                return Ok();
+                await _hubContext.Clients.All.SendAsync("ReceiveAlarm", alarm1);
+                return Ok(alarm1);
             }
             catch (Exception ex)
             {

@@ -2,7 +2,6 @@
 using SNUS_PROJECT.DTO;
 using SNUS_PROJECT.Interfaces;
 using SNUS_PROJECT.Models;
-using System.Reflection.Metadata.Ecma335;
 
 namespace SNUS_PROJECT.Controllers
 {
@@ -27,7 +26,7 @@ namespace SNUS_PROJECT.Controllers
             _reportRepository = reportRepository;
         }
         [HttpGet("FindAllAlarmsByDateRange")]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<Alarm>))]
+        [ProducesResponseType(200, Type = typeof(ICollection<Alarm>))]
         public ActionResult FindAllAlarmsByDateRange([FromQuery] DateTime from, [FromQuery] DateTime to, [FromQuery] int sort) 
         {
             var alarms = _alarmRepository.GetAlarmsInTimePeriod(from, to, sort);
@@ -51,10 +50,9 @@ namespace SNUS_PROJECT.Controllers
         }
 
         [HttpGet("FindAllTagsByDateRange")]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<TagDto>))]
-        public ActionResult FindAllTagsByDateRange([FromQuery] DateTime from, [FromQuery] DateTime to, [FromQuery] int sort)
+        public IActionResult FindAllTagsByDateRange([FromQuery] DateTime from, [FromQuery] DateTime to, [FromQuery] int sort)
         {
-            var tags = _reportRepository.GetLatestValuesOfTags(sort, from, to);
+            List<TagDto> tags = _reportRepository.GetLatestValuesOfTags(sort, from, to).ToList();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

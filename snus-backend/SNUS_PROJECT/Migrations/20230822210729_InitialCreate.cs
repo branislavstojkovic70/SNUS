@@ -141,7 +141,7 @@ namespace SNUS_PROJECT.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Timestamp = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    AlarmId = table.Column<int>(type: "int", nullable: true)
+                    AlarmId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -150,7 +150,8 @@ namespace SNUS_PROJECT.Migrations
                         name: "FK_AlarmActivations_Alarms_AlarmId",
                         column: x => x.AlarmId,
                         principalTable: "Alarms",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
