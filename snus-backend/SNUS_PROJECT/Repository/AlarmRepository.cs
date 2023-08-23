@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore;
 using SNUS_PROJECT.Data;
 using SNUS_PROJECT.DTO;
+using SNUS_PROJECT.Hubs;
 using SNUS_PROJECT.Interfaces;
 using SNUS_PROJECT.Models;
 using System.Security.Claims;

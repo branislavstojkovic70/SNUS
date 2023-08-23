@@ -36,8 +36,6 @@ builder.Services.AddCors(opt =>
 });
 
 var app = builder.Build();
-//AddUserToDatabase(app.Services.CreateScope().ServiceProvider);
-
 
 if (args.Length == 1 && args[0].ToLower() == "seeddata")
     SeedData(app);
@@ -67,19 +65,14 @@ else
 
 }
 
-
 app.UseCors("AllowOrigins");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.MapHub<AlarmHub>("/hubs/alarmHub");
 app.MapHub<TagHub>("/hubs/tagHub");
-
 
 app.Run();

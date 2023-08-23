@@ -12,15 +12,16 @@ namespace SNUS_PROJECT.Repository
     public class AnalogInputRepository : IAnalogInputRepository
     {
         private DataContext _dataContext;
+
         public AnalogInputRepository(DataContext dataContext)
         {
             _dataContext = dataContext;
         }
-        public void AddAnalogInput(AnalogInput analogInput)
+        public void AddAnalogInput(AnalogInput analogInput, IHubContext<AlarmHub> hubContext)
         {
             _dataContext.AnalogInputs.Add(analogInput);
             _dataContext.SaveChanges();
-            CheckAlarm((int)analogInput.Value, analogInput);
+            CheckAlarm((int)analogInput.Value, analogInput, hubContext);
         }
 
         public void DeleteAnalogInput(int id)
@@ -95,7 +96,7 @@ namespace SNUS_PROJECT.Repository
             }
         }
 
-        public void UpdateAnalogInput(AnalogInputDto analogInputDto, int id)
+        public void UpdateAnalogInput(AnalogInputDto analogInputDto, int id, IHubContext<AlarmHub> hubContext)
         {
             var existingAnalogInput = _dataContext.AnalogInputs.Where(p => p.Id == id).FirstOrDefault();
             if (existingAnalogInput != null)
@@ -109,7 +110,7 @@ namespace SNUS_PROJECT.Repository
                 existingAnalogInput.HighLimit = analogInputDto.HighLimit;
                 existingAnalogInput.Units = analogInputDto.Units;
                 existingAnalogInput.Value = analogInputDto.Value;
-                CheckAlarm((int)existingAnalogInput.Value, existingAnalogInput);
+                CheckAlarm((int)existingAnalogInput.Value, existingAnalogInput, hubContext);
                 _dataContext.SaveChanges();
             }
         }
@@ -136,14 +137,14 @@ namespace SNUS_PROJECT.Repository
             return false;
         }
 
-        public AnalogInput? ChangeValue(int id, int value)
+        public AnalogInput? ChangeValue(int id, int value, IHubContext<AlarmHub> hubContext)
         {
             var existingAnalogInput = _dataContext.AnalogInputs.Where(p => p.Id == id).FirstOrDefault();
             if (existingAnalogInput != null)
             {
                 existingAnalogInput.Value = value;
                 _dataContext.SaveChanges();
-                CheckAlarm(value, existingAnalogInput);
+                CheckAlarm(value, existingAnalogInput, hubContext);
                 return existingAnalogInput;
             }
             else
@@ -152,7 +153,7 @@ namespace SNUS_PROJECT.Repository
             }
         }
 
-        private async Task CheckAlarm(int value, AnalogInput analogInput)
+        private async Task CheckAlarm(int value, AnalogInput analogInput, IHubContext<AlarmHub> hubContext)
         {
             Alarm alarm = new Alarm();
             AlarmActivation activation = new AlarmActivation();
@@ -189,6 +190,7 @@ namespace SNUS_PROJECT.Repository
             activation = new AlarmActivation(DateTime.Now, alarm, alarm.Id);
             _dataContext.AlarmActivations.Add(activation);
             _dataContext.SaveChanges();
+            await hubContext.Clients.All.SendAsync("ReceiveAlarm", analogInput);
             string interpolatedString = $"Alarm id: {alarm.Id}, type: {alarm.Type}, priority: {alarm.Priority}, message: {alarm.Message}, time: {alarm.TimeStamp}, value: {value}.";
             string filePath = "C:\\Users\\ANJA\\Desktop\\SNUS\\snus-backend\\SNUS_PROJECT\\Data\\alarmsLog.txt"; // Replace with the actual file path
             using (StreamWriter writer = new StreamWriter(filePath, append: true))

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using SNUS_PROJECT.DTO;
+using SNUS_PROJECT.Hubs;
 using SNUS_PROJECT.Interfaces;
 using SNUS_PROJECT.Models;
 using SNUS_PROJECT.Repository;
@@ -11,10 +13,12 @@ namespace SNUS_PROJECT.Controllers
     public class AnalogInputController : Controller
     {
         private readonly IAnalogInputRepository _analogInputRepository;
+        private readonly IHubContext<AlarmHub> _alarmHubContext;
 
-        public AnalogInputController(IAnalogInputRepository analogInputRepository)
+        public AnalogInputController(IAnalogInputRepository analogInputRepository, IHubContext<AlarmHub> hubContext)
         {
             _analogInputRepository = analogInputRepository;
+            _alarmHubContext = hubContext;
         }
 
         [HttpGet("all")]
@@ -35,7 +39,7 @@ namespace SNUS_PROJECT.Controllers
             try
             {
                 AnalogInput analogInput = new AnalogInput(analogInputDto);
-                _analogInputRepository.AddAnalogInput(analogInput);
+                _analogInputRepository.AddAnalogInput(analogInput, _alarmHubContext);
                 return Ok(analogInput);
             }
             catch (Exception ex)
@@ -95,7 +99,7 @@ namespace SNUS_PROJECT.Controllers
         {
             try
             {
-                _analogInputRepository.UpdateAnalogInput(AnalogInput, id);
+                _analogInputRepository.UpdateAnalogInput(AnalogInput, id, _alarmHubContext);
                 return Ok();
             }
             catch (Exception ex)

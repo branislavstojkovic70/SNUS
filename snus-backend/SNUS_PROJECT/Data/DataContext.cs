@@ -6,11 +6,7 @@ namespace SNUS_PROJECT.Data
 {
     public class DataContext : DbContext
     {
-        public DataContext(DbContextOptions<DataContext> options) : base(options)
-        {
-
-
-        }
+        public DataContext(DbContextOptions<DataContext> options) : base(options){}
         public DbSet<User> Users { get; set; }
         public DbSet<Alarm> Alarms { get; set; }
         public DbSet<AlarmActivation> AlarmActivations { get; set; }
@@ -52,7 +48,5 @@ namespace SNUS_PROJECT.Data
 
             base.OnModelCreating(modelBuilder);
         }
-
-
     }
 }

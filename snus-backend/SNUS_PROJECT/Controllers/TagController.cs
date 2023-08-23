@@ -32,10 +32,10 @@ namespace SNUS_PROJECT.Controllers
             {
                 if(type == 1)
                 {
-                    AnalogInput ai = _analogInputRepository.ChangeValue(id, value);
+                    AnalogInput ai = _analogInputRepository.ChangeValue(id, value, _alarmHubContext);
                     await _hubContext.Clients.All.SendAsync("ReceiveTag", new TagDto(ai));
-                    await _alarmHubContext.Clients.All.SendAsync("ReceiveAlarm", _analogInputRepository.GetAnalogInput(id).Alarms.OrderBy(obj => Math.Abs((obj.TimeStamp - DateTime.Now).TotalMilliseconds))
-            .FirstOrDefault());
+                    //await _alarmHubContext.Clients.All.SendAsync("ReceiveAlarm", _analogInputRepository.GetAnalogInput(id).Alarms.OrderBy(obj => Math.Abs((obj.TimeStamp - DateTime.Now).TotalMilliseconds))
+            //.FirstOrDefault());
                     return Ok();
                 }
                 else
