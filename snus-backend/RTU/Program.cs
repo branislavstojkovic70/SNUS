@@ -25,7 +25,7 @@
                 },
                 null,
                 TimeSpan.Zero,
-                TimeSpan.FromSeconds(60));
+                TimeSpan.FromSeconds(20));
             
             Console.WriteLine("Press Enter to exit...");
             Console.ReadLine();

@@ -1,5 +1,8 @@
-﻿using SNUS_PROJECT.Data;
+﻿using Microsoft.AspNetCore.SignalR;
+using Newtonsoft.Json.Linq;
+using SNUS_PROJECT.Data;
 using SNUS_PROJECT.DTO;
+using SNUS_PROJECT.Hubs;
 using SNUS_PROJECT.Interfaces;
 using SNUS_PROJECT.Models;
 using System.Text.Json;
@@ -17,6 +20,7 @@ namespace SNUS_PROJECT.Repository
         {
             _dataContext.AnalogInputs.Add(analogInput);
             _dataContext.SaveChanges();
+            CheckAlarm((int)analogInput.Value, analogInput);
         }
 
         public void DeleteAnalogInput(int id)
@@ -105,7 +109,7 @@ namespace SNUS_PROJECT.Repository
                 existingAnalogInput.HighLimit = analogInputDto.HighLimit;
                 existingAnalogInput.Units = analogInputDto.Units;
                 existingAnalogInput.Value = analogInputDto.Value;
-                
+                CheckAlarm((int)existingAnalogInput.Value, existingAnalogInput);
                 _dataContext.SaveChanges();
             }
         }
@@ -148,7 +152,7 @@ namespace SNUS_PROJECT.Repository
             }
         }
 
-        private void CheckAlarm(int value, AnalogInput analogInput)
+        private async Task CheckAlarm(int value, AnalogInput analogInput)
         {
             Alarm alarm = new Alarm();
             AlarmActivation activation = new AlarmActivation();
@@ -157,11 +161,14 @@ namespace SNUS_PROJECT.Repository
                 if(analogInput.Alarms.Count > 0)
                 {
                     alarm = analogInput.Alarms.FirstOrDefault();
+                    alarm.TimeStamp = DateTime.Now;
+                    _dataContext.Alarms.Update(alarm);
                 }
                 else
                 {
                     Random r = new Random();
                     alarm = new Alarm((int)analogInput.HighLimit, "High value!", analogInput, analogInput.Id, DateTime.Now, r.Next(1, 4), "High", analogInput.Units, false);
+                    _dataContext.Alarms.Add(alarm);
                 }
             }
             if (analogInput.LowLimit < value)
@@ -169,11 +176,14 @@ namespace SNUS_PROJECT.Repository
                 if (analogInput.Alarms.Count > 0)
                 {
                     alarm = analogInput.Alarms.FirstOrDefault();
+                    alarm.TimeStamp = DateTime.Now;
+                    _dataContext.Alarms.Update(alarm);
                 }
                 else
                 {
                     Random r = new Random();
                     alarm = new Alarm((int)analogInput.HighLimit, "Low value!", analogInput, analogInput.Id, DateTime.Now, r.Next(1, 4), "Low", analogInput.Units, false);
+                    _dataContext.Alarms.Add(alarm);
                 }
             }
             activation = new AlarmActivation(DateTime.Now, alarm, alarm.Id);

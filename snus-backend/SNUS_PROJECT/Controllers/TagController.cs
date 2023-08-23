@@ -14,13 +14,15 @@ namespace SNUS_PROJECT.Controllers
         private readonly IAnalogInputRepository _analogInputRepository;
         private readonly IDigitalInputRepository _digitalInputRepository;
         private readonly IHubContext<TagHub> _hubContext;
+        private readonly IHubContext<AlarmHub> _alarmHubContext;
 
         public TagController(IAnalogInputRepository analogInputRepository, IDigitalInputRepository digitalInputRepository,
-            IHubContext<TagHub> hubContext)
+            IHubContext<TagHub> hubContext, IHubContext<AlarmHub> alarmHubContext)
         {
             _analogInputRepository = analogInputRepository;
             _digitalInputRepository = digitalInputRepository;
             _hubContext = hubContext;
+            _alarmHubContext = alarmHubContext;
         }
 
         [HttpPost("changeValue/{id}/{value}/{type}")]
@@ -32,6 +34,8 @@ namespace SNUS_PROJECT.Controllers
                 {
                     AnalogInput ai = _analogInputRepository.ChangeValue(id, value);
                     await _hubContext.Clients.All.SendAsync("ReceiveTag", new TagDto(ai));
+                    await _alarmHubContext.Clients.All.SendAsync("ReceiveAlarm", _analogInputRepository.GetAnalogInput(id).Alarms.OrderBy(obj => Math.Abs((obj.TimeStamp - DateTime.Now).TotalMilliseconds))
+            .FirstOrDefault());
                     return Ok();
                 }
                 else
